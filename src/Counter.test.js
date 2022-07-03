@@ -30,6 +30,7 @@ describe("Counter", () => {
   });
 
 
+  
 
   // it("count should decrement by 1 if the decrement button is clicked", () => {
   //   const { getByTestId, getByRole } = render(<Counter initialCount={0} />);
@@ -50,21 +51,43 @@ describe("Counter", () => {
 
 
 
+  //Restart
+
+  // it("count should be 0 if the restart button is clicked", () => {
+  //   const { getByTestId, getByRole } = render(<Counter initialCount={50} />);
+  //   const restartBttn = getByRole("button", { name: "Restart" });
+  //   expect(Number(getByTestId("count").textContent)).toEqual(50);
+  //   fireEvent.click(restartBttn);
+  //   expect(Number(getByTestId("count").textContent)).toEqual(0);
+  // });
 
   it("count should be 0 if the restart button is clicked", () => {
-    const { getByTestId, getByRole } = render(<Counter initialCount={50} />);
-    const restartBttn = getByRole("button", { name: "Restart" });
-    expect(Number(getByTestId("count").textContent)).toEqual(50);
+    render(<Counter initialCount={50} />);
+    const restartBttn = screen.getByRole("button", { name: "Restart" });
+    expect(Number(screen.getByTestId("count").textContent)).toEqual(50);
     fireEvent.click(restartBttn);
-    expect(Number(getByTestId("count").textContent)).toEqual(0);
+    expect(Number(screen.getByTestId("count").textContent)).toEqual(0);
   });
 
+
+
+  //Switch signs
   
+  // it("count should invert signs if the switch signs button is clicked", () => {
+  //   const { getByTestId, getByRole } = render(<Counter initialCount={50} />);
+  //   const switchBttn = getByRole("button", { name: "Switch Signs" });
+  //   expect(Number(getByTestId("count").textContent)).toEqual(50);
+  //   fireEvent.click(switchBttn);
+  //   expect(Number(getByTestId("count").textContent)).toEqual(-50);
+  // });
+
   it("count should invert signs if the switch signs button is clicked", () => {
-    const { getByTestId, getByRole } = render(<Counter initialCount={50} />);
-    const switchBttn = getByRole("button", { name: "Switch Signs" });
-    expect(Number(getByTestId("count").textContent)).toEqual(50);
+    render(<Counter initialCount={50} />);
+    const switchBttn = screen.getByRole("button", { name: "Switch Signs" });
+    expect(Number(screen.getByTestId("count").textContent)).toEqual(50);
     fireEvent.click(switchBttn);
-    expect(Number(getByTestId("count").textContent)).toEqual(-50);
+    expect(Number(screen.getByTestId("count").textContent)).toEqual(-50);
   });
+
+
 });
