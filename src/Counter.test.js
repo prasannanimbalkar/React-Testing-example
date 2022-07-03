@@ -1,4 +1,4 @@
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, screen } from "@testing-library/react";
 import Counter from "./Counter";
 
 describe("Counter", () => {
@@ -8,6 +8,14 @@ describe("Counter", () => {
     const countValue = Number(getByTestId("count").textContent);
     expect(countValue).toEqual(0);
   });
+
+
+  // it("counter displays correct initidal count", () => {
+  //   render(<Counter initialCount={0} />);
+  //   const countValue = Number(screen.getByTestId("count"));
+  //   console.log(countValue);
+  //   expect(countValue).toEqual(0);
+  // });
 
 
 
@@ -23,13 +31,23 @@ describe("Counter", () => {
 
 
 
+  // it("count should decrement by 1 if the decrement button is clicked", () => {
+  //   const { getByTestId, getByRole } = render(<Counter initialCount={0} />);
+  //   const decrementBttn = getByRole("button", { name: "Decrement" });
+  //   expect(Number(getByTestId("count").textContent)).toEqual(0);
+  //   fireEvent.click(decrementBttn);
+  //   expect(Number(getByTestId("count").textContent)).toEqual(-1);
+  // });
+
+
   it("count should decrement by 1 if the decrement button is clicked", () => {
-    const { getByTestId, getByRole } = render(<Counter initialCount={0} />);
-    const decrementBttn = getByRole("button", { name: "Decrement" });
-    expect(Number(getByTestId("count").textContent)).toEqual(0);
+    render(<Counter initialCount={0} />);
+    const decrementBttn = screen.getByRole("button", { name: "Decrement" });
+    expect(Number(screen.getByTestId("count").textContent)).toEqual(0);
     fireEvent.click(decrementBttn);
-    expect(Number(getByTestId("count").textContent)).toEqual(-1);
+    expect(Number(screen.getByTestId("count").textContent)).toEqual(-1);
   });
+
 
 
 
@@ -41,8 +59,7 @@ describe("Counter", () => {
     expect(Number(getByTestId("count").textContent)).toEqual(0);
   });
 
-
-
+  
   it("count should invert signs if the switch signs button is clicked", () => {
     const { getByTestId, getByRole } = render(<Counter initialCount={50} />);
     const switchBttn = getByRole("button", { name: "Switch Signs" });
@@ -50,6 +67,4 @@ describe("Counter", () => {
     fireEvent.click(switchBttn);
     expect(Number(getByTestId("count").textContent)).toEqual(-50);
   });
-
-  
 });
